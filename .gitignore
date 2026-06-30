@@ -12,5 +12,7 @@ export_credentials.cfg
 
 # Mono-specific ignores
 .mono/
-data_*/
+data_*
+!data_bind_system/
+!data_bind_system/**
 mono_crash.*.json
