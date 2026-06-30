@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cmsb4xamn0y62"]
+
+[ext_resource type="Script" uid="uid://qqmjccgr57k7" path="res://example/demo/character/character.gd" id="1_mq47c"]
+[ext_resource type="Texture2D" uid="uid://blwra74qbqmfr" path="res://icon.svg" id="1_ohh32"]
+[ext_resource type="Script" uid="uid://d27e67g8ig75l" path="res://example/demo/data_scripts/character_data.gd" id="2_nioym"]
+[ext_resource type="Script" uid="uid://ctv6wra7vojnq" path="res://example/demo/data_scripts/character_stats_data.gd" id="3_vij3v"]
+[ext_resource type="Script" uid="uid://bgn53d7mjw60n" path="res://example/demo/character/health_bar.gd" id="4_0ojjs"]
+
+[sub_resource type="Resource" id="Resource_vij3v"]
+script = ExtResource("3_vij3v")
+metadata/_custom_type_script = "uid://ctv6wra7vojnq"
+
+[sub_resource type="Resource" id="Resource_gyi3a"]
+script = ExtResource("2_nioym")
+stats = SubResource("Resource_vij3v")
+metadata/_custom_type_script = "uid://d27e67g8ig75l"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohh32"]
+size = Vector2(90, 90)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1169634941]
+script = ExtResource("1_mq47c")
+character_data = SubResource("Resource_gyi3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1519332695]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_ohh32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2103295400]
+shape = SubResource("RectangleShape2D_ohh32")
+
+[node name="NameLabel" type="Label" parent="." unique_id=159866018]
+unique_name_in_owner = true
+offset_left = -150.0
+offset_top = -101.0
+offset_right = 152.0
+offset_bottom = -78.0
+text = "Player"
+horizontal_alignment = 1
+
+[node name="Health Bar" type="ColorRect" parent="." unique_id=296468960]
+offset_left = -67.0
+offset_top = -74.0
+offset_right = 67.0
+offset_bottom = -62.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_0ojjs")
+
+[node name="GreenBar" type="ColorRect" parent="Health Bar" unique_id=26396788]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 132.0
+offset_bottom = 10.0
+color = Color(0, 1, 0, 1)

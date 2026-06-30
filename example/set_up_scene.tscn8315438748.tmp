@@ -1,0 +1,453 @@
+[gd_scene format=3 uid="uid://gn50nh687lc8"]
+
+[ext_resource type="Script" uid="uid://c30ehsjp7lg4h" path="res://example/example_handler.gd" id="1_sfg66"]
+[ext_resource type="Script" uid="uid://ce7oho4d7xxl1" path="res://example/tmp_test_scene.gd" id="1_yd4r8"]
+[ext_resource type="Script" uid="uid://d27e67g8ig75l" path="res://example/example_data.gd" id="2_5p7qa"]
+[ext_resource type="Resource" uid="uid://bmfp3oiiulilm" path="res://example/helloworld.tres" id="2_uhlp0"]
+
+[sub_resource type="Resource" id="Resource_yd4r8"]
+script = ExtResource("2_5p7qa")
+metadata/_custom_type_script = "uid://d27e67g8ig75l"
+
+[node name="Node2D" type="Control" unique_id=736126061]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yd4r8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=703131093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=550460313]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label1" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=936897574]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = SubResource("Resource_yd4r8")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=347038272]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1347988296]
+layout_mode = 2
+text = "test"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=2059789397]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1814569924]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=379279499]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=270260815]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label8" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1906158022]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label9" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=481236892]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label10" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=738094102]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label11" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=216463377]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label12" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1849184438]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label13" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1568186575]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label14" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=556063831]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label15" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=128738935]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label16" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1108417163]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label17" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1258025213]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label18" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1570149941]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label19" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=997923695]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label20" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1428113600]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label21" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1815159164]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label22" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=167012998]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label23" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=130312461]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1563796248]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label1" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=345280740]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1609337224]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=435599309]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1693460232]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1378659953]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=904216996]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=665438427]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label8" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1515314566]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label9" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=258197709]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label10" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=732037919]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label11" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1032864934]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label12" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1075335322]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label13" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=974553403]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label14" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1285730492]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label15" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1691151052]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label16" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=236813956]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label17" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1740765780]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label18" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1839365443]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label19" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1577529884]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label20" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=2132055391]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label21" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1694937107]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label22" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=833141746]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label23" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1293759986]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=819987928]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label1" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1733370394]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1661758136]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=10807976]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=131477970]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1787585269]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label6" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1135204296]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label7" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1047862150]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label8" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1540146772]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label9" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=811495777]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label10" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1882887739]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label11" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=100263107]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label12" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1668077058]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label13" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1885685730]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label14" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=723067132]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label15" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1384033109]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label16" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1159875171]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label17" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1620012318]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label18" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=156223752]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label19" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=124255596]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label20" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1048296115]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label21" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=671805784]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label22" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1506800669]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")
+
+[node name="Label23" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=266430051]
+layout_mode = 2
+text = "test2"
+script = ExtResource("1_sfg66")
+data = ExtResource("2_uhlp0")

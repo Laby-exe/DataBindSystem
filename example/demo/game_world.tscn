@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cclqs8i4h4o6y"]
+
+[ext_resource type="PackedScene" uid="uid://cmsb4xamn0y62" path="res://example/demo/character/character.tscn" id="1_5bld0"]
+
+[node name="GameWorld" type="Node2D" unique_id=690425422]
+
+[node name="Grass" type="ColorRect" parent="." unique_id=1213400638]
+offset_right = 2319.0
+offset_bottom = 1648.0
+color = Color(0.4509804, 0.6784314, 0.38039216, 1)
+
+[node name="CharacterBody2D" parent="." unique_id=1169634941 instance=ExtResource("1_5bld0")]
+position = Vector2(1095, 874)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1796490890]
+position = Vector2(1103, 877)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://c3o4ui70lgccq"]
+
+[ext_resource type="Script" uid="uid://d27e67g8ig75l" path="res://example/demo/data_scripts/character_data.gd" id="1_77goq"]
+[ext_resource type="Script" uid="uid://ctv6wra7vojnq" path="res://example/demo/data_scripts/character_stats_data.gd" id="2_yuiak"]
+
+[sub_resource type="Resource" id="Resource_ow6lw"]
+script = ExtResource("2_yuiak")
+max_hp = 100
+current_hp = 50
+damage = 50
+metadata/_custom_type_script = "uid://ctv6wra7vojnq"
+
+[resource]
+script = ExtResource("1_77goq")
+name = "Albert the Great"
+character_class = 1
+stats = SubResource("Resource_ow6lw")
+metadata/_custom_type_script = "uid://d27e67g8ig75l"
