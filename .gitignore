@@ -15,4 +15,6 @@ export_credentials.cfg
 data_*
 !data_bind_system/
 !data_bind_system/**
+!data_scripts/
+!data_scripts/**
 mono_crash.*.json
