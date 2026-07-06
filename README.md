@@ -7,3 +7,6 @@ ROAD MAP :
 BUG :
 	Sometimes HealthBar scale is not correct
 	Deferred bind or deferred unbind
+
+
+Bind avec Variant au lieu de StringName ? et get_property_list

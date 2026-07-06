@@ -18,12 +18,10 @@ func _ready() -> void:
 	damage_spin_box.value_changed.connect(_on_damage_changed)
 	currenthp_spin_box.value_changed.connect(_on_currenthp_changed)
 	line_edit.text_changed.connect(_on_name_changed)
-	
-	update_display()
 
 
 func update_display() -> void:
-	if _data:
+	if _data and _data.stats:
 		maxhp_spin_box.value = _data.stats.max_hp
 		damage_spin_box.value = _data.stats.damage
 		currenthp_spin_box.value = _data.stats.current_hp
@@ -36,13 +34,17 @@ func update_display() -> void:
 
 
 func _on_max_hp_changed(value: float):
-	_data.stats.max_hp = int(value)
+	if _data and _data.stats:
+		_data.stats.max_hp = int(value)
 
 func _on_damage_changed(value: float):
-	_data.stats.damage = int(value)
+	if _data and _data.stats:
+		_data.stats.damage = int(value)
 
 func _on_currenthp_changed(value: float):
-	_data.stats.current_hp = int(value)
+	if _data and _data.stats:
+		_data.stats.current_hp = int(value)
 
 func _on_name_changed(value: String):
-	_data.name = value
+	if _data and _data.stats:
+		_data.name = value

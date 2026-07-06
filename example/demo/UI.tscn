@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://cte2n18fe3xpw" path="res://example/demo/ui/change_file_menu.gd" id="2_0lavn"]
 [ext_resource type="Script" uid="uid://d27e67g8ig75l" path="res://example/demo/data_scripts/character_data.gd" id="3_dngps"]
 [ext_resource type="Script" uid="uid://dfogplak84vp2" path="res://example/demo/ui/change_stats_menu.gd" id="3_qcatg"]
-[ext_resource type="Resource" uid="uid://cks715kfd0pq8" path="res://example/demo/ressources/gillaume.tres" id="3_sdavg"]
-[ext_resource type="Resource" uid="uid://c3o4ui70lgccq" path="res://example/demo/ressources/alber.tres" id="4_f41a4"]
+[ext_resource type="Resource" uid="uid://diryj74ep5rsg" path="res://example/demo/ressources/gillaume.tres" id="3_sdavg"]
+[ext_resource type="Resource" uid="uid://cvukm1gx4o4bj" path="res://example/demo/ressources/alber.tres" id="4_f41a4"]
 [ext_resource type="Script" uid="uid://u637j34l1sq8" path="res://example/demo/ui/save_menu.gd" id="8_f41a4"]
 
 [node name="UI" type="Control" unique_id=736126061]
@@ -31,41 +31,47 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SidePanel" unique_id=1574340451]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/SidePanel" unique_id=1251736565]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/SidePanel/ScrollContainer" unique_id=1574340451]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer" unique_id=2012949829]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer" unique_id=2012949829]
 layout_mode = 2
 
-[node name="CharacterFile" type="VBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=1268295097]
+[node name="CharacterFile" type="VBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1268295097]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/CharacterFile" unique_id=908076310]
+[node name="Label" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/CharacterFile" unique_id=908076310]
 layout_mode = 2
 text = "SELECTED CHARACTER"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/CharacterFile" unique_id=588319835]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/CharacterFile" unique_id=588319835]
 layout_mode = 2
 script = ExtResource("2_0lavn")
 characters_files = Array[ExtResource("3_dngps")]([ExtResource("3_sdavg"), ExtResource("4_f41a4")])
 
-[node name="MinusBtn" type="Button" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=818454748]
+[node name="MinusBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=818454748]
 layout_mode = 2
 size_flags_horizontal = 0
 text = " < "
 
-[node name="Label2" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=299612936]
+[node name="Label2" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=299612936]
 custom_minimum_size = Vector2(50, 23)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,120 +79,120 @@ text = "null"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PlusBtn" type="Button" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=1630958389]
+[node name="PlusBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/CharacterFile/HBoxContainer2" unique_id=1630958389]
 layout_mode = 2
 size_flags_horizontal = 8
 text = " > "
 
-[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=693105110]
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=693105110]
 layout_mode = 2
 
-[node name="Stats" type="VBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=450010880]
+[node name="Stats" type="VBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=450010880]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("1_g5l7q")
 
-[node name="StatsLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/Stats" unique_id=697218623]
+[node name="StatsLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Stats" unique_id=697218623]
 layout_mode = 2
 text = "Stats"
 horizontal_alignment = 1
 
-[node name="Control2" type="Control" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/Stats" unique_id=733470712]
+[node name="Control2" type="Control" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Stats" unique_id=733470712]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/Stats" unique_id=2086106473]
+[node name="NameLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Stats" unique_id=2086106473]
 layout_mode = 2
 text = "Display Name"
 
-[node name="MaxHPLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/Stats" unique_id=1143865264]
+[node name="MaxHPLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Stats" unique_id=1143865264]
 layout_mode = 2
 text = "Max Hp"
 
-[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/Stats" unique_id=2118272846]
+[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Stats" unique_id=2118272846]
 layout_mode = 2
 text = "Damage"
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=1021770446]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1021770446]
 layout_mode = 2
 
-[node name="ChangeStats" type="VBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=265144384]
+[node name="ChangeStats" type="VBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=265144384]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_qcatg")
 
-[node name="Label" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=67818228]
+[node name="Label" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=67818228]
 layout_mode = 2
 text = "Edit stats"
 horizontal_alignment = 1
 
-[node name="Control3" type="Control" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=2134276173]
+[node name="Control3" type="Control" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=2134276173]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=1996959639]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=1996959639]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=467487488]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=467487488]
 layout_mode = 2
 
-[node name="MaxHPLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer" unique_id=1325082147]
+[node name="MaxHPLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer" unique_id=1325082147]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Max Hp"
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer" unique_id=609548493]
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer" unique_id=609548493]
 layout_mode = 2
 max_value = 10000.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=594494593]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=594494593]
 layout_mode = 2
 
-[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer3" unique_id=624359124]
+[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer3" unique_id=624359124]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Current Hp"
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer3" unique_id=589715762]
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer3" unique_id=589715762]
 layout_mode = 2
 max_value = 10000.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats" unique_id=859908469]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats" unique_id=859908469]
 layout_mode = 2
 
-[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer2" unique_id=247878619]
+[node name="DamageLabel" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer2" unique_id=247878619]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Damage"
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer2" unique_id=1099115340]
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/ChangeStats/HBoxContainer2" unique_id=1099115340]
 layout_mode = 2
 max_value = 10000.0
 
-[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=1280548296]
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1280548296]
 layout_mode = 2
 
-[node name="SaveSystem" type="VBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer" unique_id=1728859478]
+[node name="SaveSystem" type="VBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1728859478]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 script = ExtResource("8_f41a4")
 
-[node name="Label" type="Label" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/SaveSystem" unique_id=1135050323]
+[node name="Label" type="Label" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem" unique_id=1135050323]
 custom_minimum_size = Vector2(50, 23)
 layout_mode = 2
 text = "\"res://example/demo/ressources/saved_charater.tres\""
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/SaveSystem" unique_id=979107672]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem" unique_id=979107672]
 layout_mode = 2
 
-[node name="SaveBtn" type="Button" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=795814952]
+[node name="SaveBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=795814952]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SAVE"
 
-[node name="LoadBtn" type="Button" parent="HBoxContainer/SidePanel/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=151225618]
+[node name="LoadBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=151225618]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "LOAD"

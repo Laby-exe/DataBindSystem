@@ -10,9 +10,9 @@ func _ready() -> void:
 	load_btn.pressed.connect(_on_load_pressed)
 
 func _on_save_pressed():
-	var data = Game.node.selected_character.character_data
-	DataBindSystem.save_data(data, path)
+	var character = Game.node.selected_character
+	character.DBS.save_data(&"character_data")
 
 func _on_load_pressed():
-	#var data = Game.node.selected_character.character_data
-	Game.node.selected_character.character_data = DataBindSystem.load_data(path)
+	var character = Game.node.selected_character
+	character.DBS.load_data(&"character_data", path)

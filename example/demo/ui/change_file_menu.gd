@@ -19,7 +19,7 @@ func _ready() -> void:
 	await Game.node.ready
 	Game.node.selected_character.DBS.source_data_changed.connect(special_update)
 	
-	update_character()
+	#update_character()
 
 
 func _on_plus_pressed():
@@ -41,4 +41,5 @@ func update_character():
 
 
 func special_update():
-	label_2.text = Game.node.selected_character.character_data.resource_path
+	if Game.node.selected_character.character_data:
+		label_2.text = Game.node.selected_character.character_data.resource_path

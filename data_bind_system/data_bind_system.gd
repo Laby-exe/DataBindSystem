@@ -33,22 +33,21 @@ func _init(source_object: Object):
 ## func update():
 ##     print("property 1 or property 2 was updated")
 ## [/codeblock]
-func bind_source(source_data_name: StringName,
-watched_properties: Array[StringName], callback: Callable) -> void:
+func bind_source(source_data_name: StringName, watched_properties: Array[StringName],
+callback: Callable, call_immediately: bool = true) -> void:
 	
 	assert(_source_object, "source_object is null")
 	
 	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
 	
 	var source_data = _source_object.get(source_data_name)
-	assert(source_data is ReactiveData, "source_data is not ReactiveData")
-	
-	#for property in watched_properties:
-		#assert(ReactiveData.notified_properties.has(property), "The property '%s' in source_data %s is not used by any notify functions" % [property, source_data])
+	if source_data : assert(source_data is ReactiveData, "source_data is not ReactiveData")
 	
 	var err : DataBind = find_bind(source_data_name, watched_properties, callback)
 	if err: push_warning("Aptenting to create a bind that already exist %s" % [err]); return
 	
+	
+	watched_properties.sort()
 	
 	var new_bind := DataBind.new(
 		_source_object,
@@ -58,8 +57,9 @@ watched_properties: Array[StringName], callback: Callable) -> void:
 	)
 	
 	if not _source_binds.has(source_data_name) : _source_binds[source_data_name] = []
-	
 	_source_binds[source_data_name].append(new_bind)
+	
+	if call_immediately: new_bind.callback.call()
 
 
 ## Find and unbind a Bind with the same properties as follow [br][br]
@@ -69,12 +69,13 @@ watched_properties: Array[StringName], callback: Callable) -> void:
 func unbind(source_data_name: StringName,
 watched_properties: Array[StringName], callback: Callable) -> void:
 	
-	var bind = find_bind(source_data_name, watched_properties, callback)
-	#assert(bind, "couldn't find a matching bind to unbind %s, %s, %s, %s" % [_source_object,source_data_name,watched_properties,callback])
+	watched_properties.sort()
 	
-	if bind: 
-		bind._disconnect()
-		_source_binds[source_data_name].erase(bind)
+	var bind = find_bind(source_data_name, watched_properties, callback)
+	assert(bind, "couldn't find a matching bind to unbind %s, %s, %s, %s" % [_source_object,source_data_name,watched_properties,callback])
+	
+	bind._disconnect()
+	_source_binds[source_data_name].erase(bind)
 
 
 ## You can use this function to know when a source data has changed
@@ -103,6 +104,10 @@ force_update: bool = true, force_null_update: bool = true) -> void:
 	if not _source_binds.has(source_data_name): return
 	if _source_binds[source_data_name].is_empty(): return
 	
+	var source_data = _source_object.get(source_data_name)
+	if source_data : assert(source_data is ReactiveData, "source_data is not ReactiveData")
+	
+	
 	if _source_object.get(source_data_name):
 		for bind in _source_binds[source_data_name]:
 			bind.reconnect()
@@ -115,18 +120,53 @@ force_update: bool = true, force_null_update: bool = true) -> void:
 
 ## SAVE SYSTEM
 
-static func load_data(path : String) -> ReactiveData :
+## Load a source_data from a path, [param resouce_path_override] can be set to change the default
+## save path of the [ReactiveData][br][br][br]
+## [b] Example Usage
+## [codeblock]
+## DBS.load_data(&"my_data", "res://resources/my_data")
+##
+## DBS.load_data(&"my_data2", "res://resources/my_definition_data", "user://saved_data")
+##
+## DBS.save_data(&"my_data2") # resource will be saved to "user://saved_data" instead of "res://resources/my_definition_data"
+## [/codeblock]
+func load_data(source_data_name: StringName, load_from_path: String, resouce_path_override: String = "") -> void :
 	
-	assert(ResourceLoader.exists(path), "No ressource found at path %s" % [path])
-	#if not ResourceLoader.exists(path) : 
-		#ResourceSaver.save(ReactiveData.new(),path)
+	assert(_source_object, "source_object is null")
 	
-	return ResourceLoader.load(path)
+	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
+	
+	assert(ResourceLoader.exists(load_from_path), "No ressource found at path %s" % [load_from_path])
+	
+	var data = ResourceLoader.load(load_from_path)
+	assert(data is ReactiveData, "source_data is not ReactiveData")
+	 
+	if not resouce_path_override.is_empty(): data.resource_path = resouce_path_override
+	
+	_source_object.set(source_data_name, data)
 
 
-static func save_data(new_data : ReactiveData, path : String) -> void :
+## Save a source_data either to Resource.resource_path or to [param save_to_path] [br][br][br]
+## [b] Example Usage
+## [codeblock]
+## DBS.save_data(&"my_data") # Save to my_data.resource_path
+## DBS.save_data(&"my_data", "res://resources/my_data") # Save to custom_path
+## [/codeblock]
+func save_data(source_data_name: StringName, save_to_path: String = "") -> void :
 	
-	ResourceSaver.save(new_data, path)
+	assert(_source_object, "source_object is null")
+	
+	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
+	
+	var source_data = _source_object.get(source_data_name)
+	assert(source_data is ReactiveData, "source_data is not ReactiveData")
+	
+	var path : String
+	if save_to_path.is_empty(): path = source_data.resource_path
+	else: path = save_to_path
+	
+	var err := ResourceSaver.save(source_data, path)
+	if err != OK: push_warning("Save failed (%s)" % error_string(err))
 
 
 ## HELPER

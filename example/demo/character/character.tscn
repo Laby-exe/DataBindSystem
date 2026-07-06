@@ -6,13 +6,13 @@
 [ext_resource type="Script" uid="uid://ctv6wra7vojnq" path="res://example/demo/data_scripts/character_stats_data.gd" id="3_vij3v"]
 [ext_resource type="Script" uid="uid://bgn53d7mjw60n" path="res://example/demo/character/health_bar.gd" id="4_0ojjs"]
 
-[sub_resource type="Resource" id="Resource_vij3v"]
+[sub_resource type="Resource" id="Resource_e8x81"]
 script = ExtResource("3_vij3v")
 metadata/_custom_type_script = "uid://ctv6wra7vojnq"
 
-[sub_resource type="Resource" id="Resource_gyi3a"]
+[sub_resource type="Resource" id="Resource_f44ux"]
 script = ExtResource("2_nioym")
-stats = SubResource("Resource_vij3v")
+stats = SubResource("Resource_e8x81")
 metadata/_custom_type_script = "uid://d27e67g8ig75l"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohh32"]
@@ -20,7 +20,7 @@ size = Vector2(90, 90)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1169634941]
 script = ExtResource("1_mq47c")
-character_data = SubResource("Resource_gyi3a")
+character_data = SubResource("Resource_f44ux")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1519332695]
 scale = Vector2(0.75, 0.75)

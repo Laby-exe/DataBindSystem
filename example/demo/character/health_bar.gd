@@ -6,11 +6,10 @@ class_name HealthBar extends ColorRect
 
 func _ready() -> void:
 	character.DBS.bind_source(&"character_data", [&"stats.current_hp",&"stats.max_hp"], update_hp)
-	update_hp()
 
 
 func update_hp():
-	if character.character_data:
+	if character.character_data and character.character_data.stats:
 		var stats = character.character_data.stats
 		var ratio : float = float(stats.current_hp) / stats.max_hp
 		%GreenBar.scale.x = ratio

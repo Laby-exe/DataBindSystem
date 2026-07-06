@@ -11,11 +11,8 @@ var DBS := DataBindSystem.new(self)
 func _ready() -> void:
 	Game.node.selected_character = self
 	DBS.bind_source(&"character_data", [&"name"], update_name)
-	update_name()
 
 
 func update_name():
 	if character_data: %NameLabel.text = character_data.name
-	else: %NameLabel.text = null
-
-# Voir si ca peut marcher avec get_property_list
+	else: %NameLabel.text = ""

@@ -12,12 +12,10 @@ var _data : CharacterData :
 
 func _ready() -> void:
 	Game.node.selected_character.DBS.bind_source(&"character_data", [&"name", &"stats.max_hp", &"stats.damage"], update_text)
-	
-	update_text()
 
 
 func update_text() -> void:
-	if _data:
+	if _data and _data.stats:
 		name_label.text = _data.name
 		max_hp_label.text = "Max HP : %s" % [_data.stats.max_hp]
 		damage_label.text = "Damage : %s" % [_data.stats.damage]
