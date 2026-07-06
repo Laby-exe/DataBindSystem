@@ -2,7 +2,7 @@ class_name DataBind extends RefCounted
 
 
 var source_object: Object
-var watched_properties: Array[StringName]
+var watched_properties: Array[StringName] # Is sorted by [DataBindSystem]
 var callback: Callable
 var source_data_name: StringName
 var _data: ReactiveData

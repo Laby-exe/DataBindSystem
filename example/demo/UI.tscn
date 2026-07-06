@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://cte2n18fe3xpw" path="res://example/demo/ui/change_file_menu.gd" id="2_0lavn"]
 [ext_resource type="Script" uid="uid://d27e67g8ig75l" path="res://example/demo/data_scripts/character_data.gd" id="3_dngps"]
 [ext_resource type="Script" uid="uid://dfogplak84vp2" path="res://example/demo/ui/change_stats_menu.gd" id="3_qcatg"]
-[ext_resource type="Resource" uid="uid://diryj74ep5rsg" path="res://example/demo/ressources/gillaume.tres" id="3_sdavg"]
-[ext_resource type="Resource" uid="uid://cvukm1gx4o4bj" path="res://example/demo/ressources/alber.tres" id="4_f41a4"]
+[ext_resource type="Resource" uid="uid://b1ln8nsjpcxar" path="res://example/demo/ressources/gillaume.tres" id="3_sdavg"]
+[ext_resource type="Resource" uid="uid://da4os1m7pnthh" path="res://example/demo/ressources/alber.tres" id="4_f41a4"]
 [ext_resource type="Script" uid="uid://u637j34l1sq8" path="res://example/demo/ui/save_menu.gd" id="8_f41a4"]
 
 [node name="UI" type="Control" unique_id=736126061]
@@ -187,7 +187,12 @@ autowrap_mode = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem" unique_id=979107672]
 layout_mode = 2
 
-[node name="SaveBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=795814952]
+[node name="SavePathBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=795814952]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SAVE AT PATH"
+
+[node name="SaveBtn" type="Button" parent="HBoxContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/SaveSystem/HBoxContainer" unique_id=177534697]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "SAVE"

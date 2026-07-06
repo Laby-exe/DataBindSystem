@@ -5,6 +5,15 @@ class_name ReactiveData extends Resource
 ## [code]set(value): variant = value; parent = self, notify(property)[/code]
 var parent : ReactiveData = null
 
+## Can be used for saving outside of the original resource_path[br][br][br]
+## [b] Example Usage
+## [codeblock]
+## DBS.load_data(&"definition_data", "res://resources/my_definition_data", "user://saved_data")
+##
+## DBS.save_data(&"definition_data") # resource will be saved to "user://saved_data" instead of "res://resources/my_definition_data"
+## [/codeblock]
+var resource_path_override : String = ""
+
 
 signal property_changed(data: ReactiveData, property: StringName)
 ## Can be called by Resources extending [ReactiveData] to emit [signal property_changed].

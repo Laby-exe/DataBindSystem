@@ -7,11 +7,13 @@ class_name DataBindSystem extends RefCounted
 var _source_binds : Dictionary[StringName, Array]
 
 var _source_object : Object
+
 ## [param source_object] is used to define which object holds the source_data : [ReactiveData] [br]
 ## source_object : is the Object holding DataBindSystem and ReactiveData [br]
 ## [code]var DBS := DataBindSystem.new(self)[/code]
 func _init(source_object: Object):
 	_source_object = source_object
+	assert(_source_object, "source_object is null")
 
 
 ## Create a bind that call the callback function when 1 of the watched_properties in the source_data is changed[br][br]
@@ -36,13 +38,12 @@ func _init(source_object: Object):
 func bind_source(source_data_name: StringName, watched_properties: Array[StringName],
 callback: Callable, call_immediately: bool = true) -> void:
 	
-	assert(_source_object, "source_object is null")
-	
-	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
-	
+	# Is source_data_name valid ?
+	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	# If source_data is not null, is it ReactiveData ?
 	var source_data = _source_object.get(source_data_name)
-	if source_data : assert(source_data is ReactiveData, "source_data is not ReactiveData")
-	
+	if source_data : assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	# Check for already existing similar binds
 	var err : DataBind = find_bind(source_data_name, watched_properties, callback)
 	if err: push_warning("Aptenting to create a bind that already exist %s" % [err]); return
 	
@@ -71,7 +72,7 @@ watched_properties: Array[StringName], callback: Callable) -> void:
 	
 	watched_properties.sort()
 	
-	var bind = find_bind(source_data_name, watched_properties, callback)
+	var bind : DataBind = find_bind(source_data_name, watched_properties, callback)
 	assert(bind, "couldn't find a matching bind to unbind %s, %s, %s, %s" % [_source_object,source_data_name,watched_properties,callback])
 	
 	bind._disconnect()
@@ -101,11 +102,12 @@ force_update: bool = true, force_null_update: bool = true) -> void:
 	
 	source_data_changed.emit()
 	
+	# If source_data is not null, is it ReactiveData ?
+	var source_data = _source_object.get(source_data_name)
+	if source_data : assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	
 	if not _source_binds.has(source_data_name): return
 	if _source_binds[source_data_name].is_empty(): return
-	
-	var source_data = _source_object.get(source_data_name)
-	if source_data : assert(source_data is ReactiveData, "source_data is not ReactiveData")
 	
 	
 	if _source_object.get(source_data_name):
@@ -126,22 +128,22 @@ force_update: bool = true, force_null_update: bool = true) -> void:
 ## [codeblock]
 ## DBS.load_data(&"my_data", "res://resources/my_data")
 ##
-## DBS.load_data(&"my_data2", "res://resources/my_definition_data", "user://saved_data")
+## DBS.load_data(&"definition_data", "res://resources/my_definition_data", "user://saved_data")
 ##
-## DBS.save_data(&"my_data2") # resource will be saved to "user://saved_data" instead of "res://resources/my_definition_data"
+## DBS.save_data(&"definition_data") # resource will be saved to "user://saved_data" instead of "res://resources/my_definition_data"
 ## [/codeblock]
 func load_data(source_data_name: StringName, load_from_path: String, resouce_path_override: String = "") -> void :
 	
-	assert(_source_object, "source_object is null")
-	
-	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
-	
+	# Is source_data_name valid ?
+	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	# Is data at path ?
 	assert(ResourceLoader.exists(load_from_path), "No ressource found at path %s" % [load_from_path])
 	
 	var data = ResourceLoader.load(load_from_path)
+	assert(data, "Data at path load_from_path %s is invalid" % [load_from_path])
 	assert(data is ReactiveData, "source_data is not ReactiveData")
 	 
-	if not resouce_path_override.is_empty(): data.resource_path = resouce_path_override
+	if not resouce_path_override.is_empty(): data.resource_path_override = resouce_path_override
 	
 	_source_object.set(source_data_name, data)
 
@@ -150,20 +152,26 @@ func load_data(source_data_name: StringName, load_from_path: String, resouce_pat
 ## [b] Example Usage
 ## [codeblock]
 ## DBS.save_data(&"my_data") # Save to my_data.resource_path
-## DBS.save_data(&"my_data", "res://resources/my_data") # Save to custom_path
+## DBS.save_data(&"definition_data", "res://resources/my_data") # Save to custom_path, will not overwrite original data
 ## [/codeblock]
 func save_data(source_data_name: StringName, save_to_path: String = "") -> void :
 	
-	assert(_source_object, "source_object is null")
-	
-	assert(has_property(_source_object, source_data_name), "Can't find %s in %s" % [source_data_name, _source_object])
-	
+	# Is source_data_name valid ?
+	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	# Is source_data valid ?
 	var source_data = _source_object.get(source_data_name)
-	assert(source_data is ReactiveData, "source_data is not ReactiveData")
+	if not source_data: push_error("Can't save source_data %s, source_data is null" % [source_data_name]); return
+	assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	
 	
 	var path : String
-	if save_to_path.is_empty(): path = source_data.resource_path
+	if save_to_path.is_empty():
+		if source_data.resource_path_override.is_empty(): path = source_data.resource_path
+		else: path = source_data.resource_path_override
+		
 	else: path = save_to_path
+	# Is path valid ?
+	assert(not path.is_empty(), "Aptenting to save %s but saving path is empty : %s" % [source_data_name, path])
 	
 	var err := ResourceSaver.save(source_data, path)
 	if err != OK: push_warning("Save failed (%s)" % error_string(err))
