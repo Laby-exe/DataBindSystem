@@ -3,10 +3,14 @@
 class_name DataBindSystem extends RefCounted
 
 
+## You can use this function to know when a source data has changed
+signal source_data_changed()
+
 # Dictionary[source_data_name, [DataBind]]
 var _source_binds : Dictionary[StringName, Array]
 
 var _source_object : Object
+
 
 ## [param source_object] is used to define which object holds the source_data : [ReactiveData] [br]
 ## source_object : is the Object holding DataBindSystem and ReactiveData [br]
@@ -39,12 +43,11 @@ func bind_source(source_data_name: StringName, watched_properties: Array[StringN
 callback: Callable, call_immediately: bool = true) -> void:
 	
 	# Is source_data_name valid ?
-	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	_validate_source(source_data_name)
 	# If source_data is not null, is it ReactiveData ?
-	var source_data = _source_object.get(source_data_name)
-	if source_data : assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	_get_source_data(source_data_name)
 	# Check for already existing similar binds
-	var err : DataBind = find_bind(source_data_name, watched_properties, callback)
+	var err : DataBind = _find_bind(source_data_name, watched_properties, callback)
 	if err: push_warning("Aptenting to create a bind that already exist %s" % [err]); return
 	
 	
@@ -72,15 +75,30 @@ watched_properties: Array[StringName], callback: Callable) -> void:
 	
 	watched_properties.sort()
 	
-	var bind : DataBind = find_bind(source_data_name, watched_properties, callback)
+	var bind : DataBind = _find_bind(source_data_name, watched_properties, callback)
 	assert(bind, "couldn't find a matching bind to unbind %s, %s, %s, %s" % [_source_object,source_data_name,watched_properties,callback])
 	
 	bind._disconnect()
 	_source_binds[source_data_name].erase(bind)
 
 
-## You can use this function to know when a source data has changed
-signal source_data_changed()
+## If you don't want to use [method notify_source_data_changed] in the source_data setters,
+## you can use [method replace_source_data] instead : [br][br]
+## [b]Instead of the setter approache :[/b]
+## [codeblock]
+## var data : ReactiveData:
+##     set(value): 
+##         data = value
+##         DBS.notify_source_data_changed(&"data")
+## [/codeblock]
+## [b]Use this instead :[/b]
+## [codeblock]
+## DBS.replace_source_data(&"data", new_data)
+## [/codeblock]
+func replace_source_data(source_data_name: StringName, new_data: ReactiveData):
+	_source_object.set(source_data_name, new_data)
+	notify_source_data_changed(source_data_name)
+
 
 ## Update all binds that were linked to the source_data [br][br]
 ## [b]source_data_name[/b] : is the name of the source_data : [ReactiveData] [br]
@@ -101,10 +119,8 @@ func notify_source_data_changed(source_data_name,
 force_update: bool = true, force_null_update: bool = true) -> void:
 	
 	source_data_changed.emit()
-	
 	# If source_data is not null, is it ReactiveData ?
-	var source_data = _source_object.get(source_data_name)
-	if source_data : assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	_get_source_data(source_data_name)
 	
 	if not _source_binds.has(source_data_name): return
 	if _source_binds[source_data_name].is_empty(): return
@@ -135,13 +151,12 @@ force_update: bool = true, force_null_update: bool = true) -> void:
 func load_data(source_data_name: StringName, load_from_path: String, resouce_path_override: String = "") -> void :
 	
 	# Is source_data_name valid ?
-	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	_validate_source(source_data_name)
 	# Is data at path ?
 	assert(ResourceLoader.exists(load_from_path), "No ressource found at path %s" % [load_from_path])
 	
-	var data = ResourceLoader.load(load_from_path)
+	var data : ReactiveData = ResourceLoader.load(load_from_path)
 	assert(data, "Data at path load_from_path %s is invalid" % [load_from_path])
-	assert(data is ReactiveData, "source_data is not ReactiveData")
 	 
 	if not resouce_path_override.is_empty(): data.resource_path_override = resouce_path_override
 	
@@ -157,11 +172,10 @@ func load_data(source_data_name: StringName, load_from_path: String, resouce_pat
 func save_data(source_data_name: StringName, save_to_path: String = "") -> void :
 	
 	# Is source_data_name valid ?
-	assert(has_property(_source_object, source_data_name), "Can't find source_data %s in source_object %s" % [source_data_name, _source_object])
+	_validate_source(source_data_name)
 	# Is source_data valid ?
-	var source_data = _source_object.get(source_data_name)
+	var source_data = _get_source_data(source_data_name)
 	if not source_data: push_error("Can't save source_data %s, source_data is null" % [source_data_name]); return
-	assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
 	
 	
 	var path : String
@@ -179,10 +193,13 @@ func save_data(source_data_name: StringName, save_to_path: String = "") -> void 
 
 ## HELPER
 
-func find_bind(source_data_name: StringName, watched_properties: Array[StringName],
+
+func _find_bind(source_data_name: StringName, watched_properties: Array[StringName],
 callback: Callable ) -> DataBind:
 	
 	if not _source_binds.has(source_data_name): return null
+	
+	watched_properties.sort()
 	
 	for bind in _source_binds[source_data_name]:
 		if not bind.watched_properties == watched_properties: continue
@@ -192,8 +209,23 @@ callback: Callable ) -> DataBind:
 	return null
 
 
-func has_property(obj: Object, property_name: StringName) -> bool:
-	for property_info in obj.get_property_list():
-		if property_info.name == property_name:
-			return true
-	return false
+func _get_source_data(source_data_name: StringName) -> ReactiveData:
+	var source_data = _source_object.get(source_data_name)
+	# If source_data is not null, is it ReactiveData ?
+	if source_data : assert(source_data is ReactiveData, "source_data %s is not ReactiveData" % [source_data_name])
+	
+	return source_data
+
+
+var _known_sources : Array[StringName]
+func _validate_source(source_data_name: StringName):
+	# Faster check
+	for known_source in _known_sources:
+		if known_source == source_data_name : return
+	# First check for a source
+	for property_info in _source_object.get_property_list():
+		if property_info.name == source_data_name:
+			_known_sources.append(source_data_name)
+			return
+	# No source was found
+	push_error("Can't find source_data %s in source_object %s" % [source_data_name, _source_object])

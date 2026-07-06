@@ -11,8 +11,4 @@ BUG :
 
 TO DO :
 	
-	Bind avec Variant au lieu de StringName ? et get_property_list
-	
 	find_bind() : DataBind.watched_properties with Dictionary instead of Array
-	
-	Save et Loading sur un autre script

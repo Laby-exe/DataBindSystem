@@ -21,7 +21,6 @@ properties: Array[StringName], function: Callable):
 
 
 func _connect() -> void:
-	#if not source_object.has(source_data_name): return
 	_data = source_object.get(source_data_name)
 	if _data: _data.property_changed.connect(_on_data_changed)
 
