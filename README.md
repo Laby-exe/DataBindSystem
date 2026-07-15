@@ -4,7 +4,9 @@ A lightweight data binding system for Godot that automatically connects callback
 
 The goal of this addon is to make UI and gameplay code react automatically to data changes while keeping the code simple and avoiding manual signal management.
 
-To install the add-on, place "data_binding_system" folder into your add-on folder
+To install the add-on, place **"data_binding_system"** folder into your add-on folder.
+
+2 examples are included, one basic set-up on how to use the add-on, and one concrete use case example project.
 
 ---
 
@@ -220,9 +222,7 @@ class_name PlayerData extends ReactiveData
 
 Planned features include:
 
-- Developer console integration
-- Runtime bind inspector
-- Debug visualization
+- Visual debug tool
 - Deferred bind or deferred unbind
 
 ---
